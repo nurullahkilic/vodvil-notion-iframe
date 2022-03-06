@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import Products from "assets/dummy.json";
+import axios from "axios";
+import { data } from "assets/dummy";
 
 const ProductsContext = createContext();
 const useProducts = () => useContext(ProductsContext);
@@ -11,11 +12,22 @@ const ProductsProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setProducts(Products);
-      setCurrentProduct(Products[0]);
-      setIsLoading(false);
-    }, 1000);
+    axios("http://127.0.0.1:5000/api/embed")
+      .then((data) => {
+        setProducts(data.data);
+        setCurrentProduct(data.data[0]);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setProducts(data);
+        setCurrentProduct(data[0]);
+        setIsLoading(false);
+      })
+      .finally(() => {
+        // setIsLoading(false);
+        // Show error screen
+      });
   }, []);
 
   const values = {

@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
-
 import Banner from "components/Banner";
 import Footer from "components/Footer";
 import TextContent from "components/TextContent";
+import SkeletonPlaceHolder from "components/SkeletonPlaceHolder";
 
 import { ProductsProvider } from "context/ProductContext";
 
@@ -13,9 +12,11 @@ function App() {
   return (
     <div className={styles.container}>
       <ProductsProvider>
-        <Banner />
-        <TextContent />
-        <Footer />
+        <SkeletonPlaceHolder>
+          <Banner />
+          <TextContent />
+          <Footer />
+        </SkeletonPlaceHolder>
       </ProductsProvider>
     </div>
   );

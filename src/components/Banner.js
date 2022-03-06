@@ -13,26 +13,34 @@ function Banner() {
       <div
         className={styles.backdropImage}
         style={{
-          "--backdrop": `url(${currentProduct?.product?.backdrop_path})`,
+          "--backdrop": `url(https://www.themoviedb.org/t/p/w1280${currentProduct?.product?.backdrop_path})`,
         }}
       >
         <img
-          src={currentProduct?.product?.poster_path}
+          src={`https://www.themoviedb.org/t/p/w780${currentProduct?.product?.poster_path}`}
           alt={currentProduct?.product?.title}
           className={styles.poster}
-          onClick={() => window.open("https://www.vodvilapp.com", "_blank")}
+          onClick={() =>
+            window.open(
+              `https://www.vodvilapp.com/${currentProduct?.product?.type}/${currentProduct?.product?.id}`,
+              "_blank"
+            )
+          }
           title={`${currentProduct?.product?.title} · Vodvil'de gör.`}
         />
         <div className={styles.productInfos}>
-          <div id="rateYo"></div>
           <div className={styles.directorInfo}>
             <span>{currentProduct?.product?.director}</span>{" "}
             {currentProduct?.product?.release_date}
           </div>
-          <div className={styles.title}>{currentProduct?.product?.title}</div>
+          <div className={styles.title}>
+            {currentProduct?.product?.title.length > 35
+              ? currentProduct?.product?.title.slice(0, 35) + "..."
+              : currentProduct?.product?.title}
+          </div>
           <Rate
             className={styles.star}
-            initialRating={currentProduct?.product?.rate}
+            initialRating={parseInt(currentProduct?.product?.rate) / 2}
           />
         </div>
         <a

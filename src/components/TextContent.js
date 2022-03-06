@@ -4,12 +4,15 @@ import { useProducts } from "context/ProductContext";
 
 function TextContent() {
   const { currentProduct } = useProducts();
+
   return (
     <>
       <div className={styles.hackBox}></div>
       <div className={styles.textContent}>
         <p>
-          {currentProduct?.notion?.content}
+          {currentProduct?.notion?.content
+            .replace(/\n/g, "")
+            .replace(/\[--spoiler--\](.*?)\[--spoiler--\]/gm, "")}
           <a
             className={styles.link}
             href="https://www.vodvilapp.com/@nurullah"

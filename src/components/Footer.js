@@ -24,13 +24,22 @@ function Footer() {
 
   return (
     <div className={styles.Footer}>
-      <div className={styles.right}>
+      <div
+        className={styles.right}
+        onClick={() =>
+          window.open(
+            `https://www.vodvilapp.com/@${currentProduct?.user?.username}`,
+            "_blank"
+          )
+        }
+      >
         <img
-          src="https://www.vodvilapp.com/static/uploads/1_profile.jpg"
-          alt=""
+          src={currentProduct?.user?.image}
+          alt={currentProduct?.user?.username}
         />
         <h5>
-          Nurullah Kılıç<span> · az önce</span>
+          {currentProduct?.user?.fullname}
+          <span> · {currentProduct?.notion?.time_ago}</span>
         </h5>
       </div>
       <div className={styles.left}>
