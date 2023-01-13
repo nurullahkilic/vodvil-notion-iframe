@@ -1,5 +1,6 @@
-import {useEffect} from "react";
-import axios from "axios"
+import { useEffect } from "react";
+import axios from "axios";
+import styled from "@emotion/styled";
 
 import Banner from "components/Banner";
 import Footer from "components/Footer";
@@ -8,12 +9,17 @@ import SkeletonPlaceHolder from "components/SkeletonPlaceHolder";
 
 import { useProducts } from "context/ProductContext";
 
-
 import "styles/App.css";
-import styles from "styles/Container.module.css";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
 
 function App() {
-  const {setProducts, setCurrentProduct, setIsLoading} = useProducts();
+  const { setProducts, setCurrentProduct, setIsLoading } = useProducts();
 
   useEffect(() => {
     axios("https://nurullahkilic.pythonanywhere.com/api/embed")
@@ -24,17 +30,17 @@ function App() {
       })
       .catch((err) => {
         setIsLoading(true);
-      })
-  },[setProducts,setCurrentProduct,setIsLoading]);
+      });
+  }, [setProducts, setCurrentProduct, setIsLoading]);
 
   return (
-    <div className={styles.container}>
-        <SkeletonPlaceHolder>
-          <Banner />
-          <TextContent />
-          <Footer />
-        </SkeletonPlaceHolder>
-    </div>
+    <Container>
+      <SkeletonPlaceHolder>
+        <Banner />
+        <TextContent />
+        <Footer />
+      </SkeletonPlaceHolder>
+    </Container>
   );
 }
 

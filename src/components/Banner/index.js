@@ -1,25 +1,37 @@
-import styles from "styles/Banner.module.css";
+import React from "react";
+import styled from "@emotion/styled";
+import {
+  Header,
+  BackdropImage,
+  PosterImage,
+  VodvilLogo,
+  ProductInfos,
+  DirectorInfo,
+  Title,
+} from "./Banner.styles";
 import logo from "assets/icons/vodvil-white-logo.svg";
-
 import Rate from "components/Rate";
 
 import { useProducts } from "context/ProductContext";
 
+const Star = styled(Rate)`
+  bottom: -33px;
+  position: absolute;
+`;
+
 function Banner() {
-  const { currentProduct } = useProducts();
+  const currentProduct = useProducts((state) => state.currentProduct);
 
   return (
-    <div className={styles.header}>
-      <div
-        className={styles.backdropImage}
-        style={{
-          "--backdrop": `url(https://www.themoviedb.org/t/p/w1280${currentProduct?.product?.backdrop_path})`,
+    <Header>
+      <BackdropImage
+        source={{
+          uri: `https://www.themoviedb.org/t/p/w1280${currentProduct?.product?.backdrop_path}`,
         }}
       >
-        <img
+        <PosterImage
           src={`https://www.themoviedb.org/t/p/w780${currentProduct?.product?.poster_path}`}
           alt={currentProduct?.product?.title}
-          className={styles.poster}
           onClick={() =>
             window.open(
               `https://www.vodvilapp.com/${currentProduct?.product?.type}/${currentProduct?.product?.id}`,
@@ -28,33 +40,29 @@ function Banner() {
           }
           title={`${currentProduct?.product?.title} · Vodvil'de gör.`}
         />
-        <div className={styles.productInfos}>
-          <div className={styles.directorInfo}>
+        <ProductInfos>
+          <DirectorInfo>
             <span>{currentProduct?.product?.director}</span>{" "}
             {currentProduct?.product?.release_date}
-          </div>
-          <div className={styles.title}>
+          </DirectorInfo>
+          <Title>
             {currentProduct?.product?.title.length > 35
               ? currentProduct?.product?.title.slice(0, 35) + "..."
               : currentProduct?.product?.title}
-          </div>
-          <Rate
-            className={styles.star}
-            initialRating={parseInt(currentProduct?.product?.rate) / 2}
-          />
-        </div>
+          </Title>
+          <Star initialRating={parseInt(currentProduct?.product?.rate) / 2} />
+        </ProductInfos>
         <a
           href="https://www.vodvilapp.com"
           target="_blank"
           rel="noreferrer"
           title="Vodvil'e git."
         >
-          <img className={styles.vodvilLogo} src={logo} alt="" />
+          <VodvilLogo src={logo} alt="Logo" />
         </a>
-      </div>
-      <span />
-    </div>
+      </BackdropImage>
+    </Header>
   );
 }
 
-export default Banner;
+export default React.memo(Banner);

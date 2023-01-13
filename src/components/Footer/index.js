@@ -1,10 +1,27 @@
-import styles from "styles/Footer.module.css";
+import React from "react";
+import { shallow } from "zustand/shallow";
+import {
+  FooterContent,
+  RightSide,
+  LeftSide,
+  ProfilePhoto,
+  UserInfo,
+  Button
+} from "./Footer.styles";
+
 import ArrowIcon from "assets/icons/ArrowIcon";
 
 import { useProducts } from "context/ProductContext";
 
 function Footer() {
-  const { products, currentProduct, setCurrentProduct } = useProducts();
+  const { products, currentProduct, setCurrentProduct } = useProducts(
+    (state) => ({
+      products: state.products,
+      currentProduct: state.currentProduct,
+      setCurrentProduct: state.setCurrentProduct,
+    }),
+    shallow
+  );
 
   const prevProduct = () => {
     let index = products.findIndex((product) => {
@@ -23,9 +40,8 @@ function Footer() {
   };
 
   return (
-    <div className={styles.Footer}>
-      <div
-        className={styles.right}
+    <FooterContent>
+      <RightSide
         onClick={() =>
           window.open(
             `https://www.vodvilapp.com/@${currentProduct?.user?.username}`,
@@ -33,25 +49,25 @@ function Footer() {
           )
         }
       >
-        <img
+        <ProfilePhoto
           src={currentProduct?.user?.image}
           alt={currentProduct?.user?.username}
         />
-        <h5>
+        <UserInfo>
           {currentProduct?.user?.fullname}
           <span> · {currentProduct?.notion?.time_ago}</span>
-        </h5>
-      </div>
-      <div className={styles.left}>
-        <button onClick={prevProduct}>
+        </UserInfo>
+      </RightSide>
+      <LeftSide>
+        <Button onClick={prevProduct}>
           <ArrowIcon rotateDeg={90} size={14} />
-        </button>
-        <button onClick={nextProduct}>
+        </Button>
+        <Button onClick={nextProduct}>
           <ArrowIcon rotateDeg={-90} size={14} />
-        </button>
-      </div>
-    </div>
+        </Button>
+      </LeftSide>
+    </FooterContent>
   );
 }
 
-export default Footer;
+export default React.memo(Footer);
