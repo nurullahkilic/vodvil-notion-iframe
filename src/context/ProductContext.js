@@ -12,7 +12,7 @@ const ProductsProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios("http://127.0.0.1:5000/api/embed")
+    axios("https://nurullahkilic.pythonanywhere.com/api/embed")
       .then((data) => {
         setProducts(data.data);
         setCurrentProduct(data.data[0]);
