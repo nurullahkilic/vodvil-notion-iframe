@@ -1,7 +1,8 @@
-import { useProducts } from "context/ProductContext";
 import styles from "styles/SkeletonPlaceHolder.module.css";
 import logo from "assets/icons/vodvil-white-logo.svg";
 import ArrowIcon from "assets/icons/ArrowIcon";
+
+import { useProducts } from "context/ProductContext";
 
 function SkeletonPlaceHolder({ children }) {
   const { isLoading } = useProducts();
@@ -31,7 +32,6 @@ function SkeletonPlaceHolder({ children }) {
       <div className={styles.Footer}>
         <div className={styles.right}>
           <div className={styles.image}></div>
-          <h5></h5>
         </div>
         <div className={styles.left}>
           <button>

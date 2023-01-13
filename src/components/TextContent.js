@@ -17,6 +17,7 @@ function TextContent() {
             className={styles.link}
             href="https://www.vodvilapp.com/@nurullah"
             target="_blank"
+            rel="noreferrer"
           >
             Siteye git
           </a>
