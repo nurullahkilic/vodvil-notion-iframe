@@ -1,5 +1,5 @@
 
-![Uygulama Ekran Görüntüsü](https://embed.vodvil.app/iframe.png)
+![Uygulama Ekran Görüntüsü](https://embed.vodvil.app/iframe.jpg)
 
     
 # Vodvil Notion Iframe
