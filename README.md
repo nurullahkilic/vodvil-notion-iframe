@@ -22,9 +22,7 @@ An iframe for the [vodvil.app](https://vodvil.app) project. Built with React, Zu
 
 
   
-## İlişkili Projeler
-
-İşte bazı ilgili projeler
+## Related Projects
 
 [Vodvil Chat](https://github.com/nurullahkilic/vodvil-chat)
 
