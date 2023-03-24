@@ -1,5 +1,5 @@
 
-![Logo](https://www.vodvilapp.com/static/icons/vodvil-white.svg)
+![Uygulama Ekran Görüntüsü](https://embed.vodvil.app/iframe.png)
 
     
 # Vodvil Notion Iframe
@@ -20,10 +20,6 @@ An iframe for the [vodvil.app](https://vodvil.app) project. Built with React, Zu
 </iframe>
 ```
 
-  
-## Ekran Görüntüleri
-
-![Uygulama Ekran Görüntüsü](https://embed.vodvil.app/test.png)
 
   
 ## İlişkili Projeler
